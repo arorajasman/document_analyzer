@@ -1,0 +1,58 @@
+import 'package:document_analyzer/models/models.dart';
+
+const List<Leads> dummyLeads = [
+  Leads(
+    id: '1',
+    leadName: 'John Doe',
+    leadSource: 'Website',
+    leadStatus: 'New',
+    contactInfo: 'john.doe@example.com',
+    contacted: false,
+    notes: 'Interested in product X.',
+  ),
+  Leads(
+    id: '2',
+    leadName: 'Jane Smith',
+    leadSource: 'Referral',
+    leadStatus: 'Contacted',
+    contactInfo: 'jane.smith@example.com',
+    contacted: true,
+    notes: 'Followed up, waiting for response.',
+  ),
+  Leads(
+    id: '3',
+    leadName: 'Alice Johnson',
+    leadSource: 'Social Media',
+    leadStatus: 'Qualified',
+    contactInfo: 'alice.johnson@example.com',
+    contacted: true,
+    notes: 'Needs a demo of product Y.',
+  ),
+  Leads(
+    id: '4',
+    leadName: 'Bob Brown',
+    leadSource: 'Email Campaign',
+    leadStatus: 'Disqualified',
+    contactInfo: 'bob.brown@example.com',
+    contacted: false,
+    notes: 'Not interested at this time.',
+  ),
+  Leads(
+    id: '5',
+    leadName: 'Charlie White',
+    leadSource: 'Event',
+    leadStatus: 'Converted',
+    contactInfo: 'charlie.white@example.com',
+    contacted: true,
+    notes: 'Purchased product Z, follow-up in 3 months.',
+  ),
+  Leads(
+    id: '6',
+    leadName: 'Diana Green',
+    leadSource: 'Cold Call',
+    leadStatus: 'New',
+    contactInfo: 'diana.green@example.com',
+    contacted: false,
+    notes: 'Requested a callback next week.',
+  ),
+];
