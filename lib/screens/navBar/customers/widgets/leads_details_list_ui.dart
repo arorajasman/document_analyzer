@@ -18,26 +18,33 @@ class LeadsDetailsListUI extends StatefulWidget {
 class _LeadsDetailsListUIState extends State<LeadsDetailsListUI> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
-      padding: const EdgeInsets.all(20.0),
-      child: Table(
-        border: TableBorder.symmetric(
-          inside: BorderSide(
-            width: 1,
-            color: AppColors.grey400,
-            style: BorderStyle.solid,
+    // added SingleChildScrollView for horizontal and vertical scroll
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        // added sizedBox with width to let horizontal scroll work
+        child: SizedBox(
+          width: MediaQuery.of(context).size.width,
+          child: Table(
+            border: TableBorder.symmetric(
+              inside: BorderSide(
+                width: 1,
+                color: AppColors.grey400,
+                style: BorderStyle.solid,
+              ),
+            ),
+            columnWidths: const {
+              0: FixedColumnWidth(80), // SL No
+              1: FixedColumnWidth(80), // Actions
+              // The rest of the columns can have a proportional width
+            },
+            children: [
+              _buildTableHeaderUI(),
+              ..._buildTableBodyUI(),
+            ],
           ),
         ),
-        columnWidths: const {
-          0: FixedColumnWidth(80), // SL No
-          1: FixedColumnWidth(80), // Actions
-          // The rest of the columns can have a proportional width
-        },
-        children: [
-          _buildTableHeaderUI(),
-          ..._buildTableBodyUI(),
-        ],
       ),
     );
   }

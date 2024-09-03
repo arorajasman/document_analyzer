@@ -32,7 +32,8 @@ class _CustomersPageState extends State<CustomersPage> {
         const SizedBox(height: 24.0),
         _buildSubHeaderWithSearchUI(),
         const SizedBox(height: 24.0),
-        const LeadsDetailsListUI(leads: dummyLeads)
+        // added Expanded() Widget to expand the List UI
+        const Expanded(child: LeadsDetailsListUI(leads: dummyLeads))
       ],
     );
   }

@@ -35,6 +35,12 @@ class _NavBarState extends State<NavBar> {
       case 'Reports':
         break;
     }
+
+     // Close the drawer if the device is mobile
+    if (AppHelpers.getDevice(context) == Devices.mobile ||
+        AppHelpers.getDevice(context) == Devices.smallMobile) {
+      Navigator.of(context).pop(); // Close the drawer
+    }
   }
 
   @override
@@ -54,7 +60,26 @@ class _NavBarState extends State<NavBar> {
   }
 
   Scaffold _buildUIForMobile() {
-    return const Scaffold();
+    return Scaffold(
+      drawer: _buildSideNavBarUI(),
+      appBar: AppBar(
+        title: _buildHeaderTitleUI(),
+        actions: [_buildHeaderIconsListUI()],
+      ),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(flex: 4, child: widget.child),
+              ],
+            ),
+          )
+        ],
+      ),
+    );
   }
 
   Scaffold _buildUIForWeb() {
@@ -63,12 +88,14 @@ class _NavBarState extends State<NavBar> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           _buildHeaderUI(),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildSideNavBarUI(),
-              Expanded(flex: 4, child: widget.child),
-            ],
+          Expanded(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildSideNavBarUI(),
+                Expanded(flex: 4, child: widget.child),
+              ],
+            ),
           ),
         ],
       ),
@@ -118,18 +145,25 @@ class _NavBarState extends State<NavBar> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(Icons.person, size: 100, color: AppColors.white),
-          Row(
-            children: [
-              Icon(Icons.notifications, color: AppColors.white),
-              const SizedBox(width: 20),
-              Icon(Icons.settings, color: AppColors.white),
-              const SizedBox(width: 20),
-              Icon(Icons.person, color: AppColors.white),
-            ],
-          )
+          _buildHeaderTitleUI(),
+          _buildHeaderIconsListUI(),
         ],
       ),
+    );
+  }
+
+  Icon _buildHeaderTitleUI() =>
+      Icon(Icons.person, size: 100, color: AppColors.white);
+
+  Row _buildHeaderIconsListUI() {
+    return Row(
+      children: [
+        Icon(Icons.notifications, color: AppColors.white),
+        const SizedBox(width: 20),
+        Icon(Icons.settings, color: AppColors.white),
+        const SizedBox(width: 20),
+        Icon(Icons.person, color: AppColors.white),
+      ],
     );
   }
 }

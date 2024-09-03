@@ -11,15 +11,16 @@ class ActionsPopupMenuUI extends StatefulWidget {
 }
 
 class _ActionsPopupMenuUIState extends State<ActionsPopupMenuUI> {
+  // TODO: work on navigation below
   void _onMenuItemPressed(int index, String title) {
     if (index == 3 && title == "Call Now") {
-      // Navigator.of(context).push(
-      //   MaterialPageRoute<void>(
-      //     builder: (BuildContext context) => const CallCustomerPage(),
-      //   ),
-      // );
+      Navigator.of(context).push(
+        MaterialPageRoute<void>(
+          builder: (BuildContext context) => const CallCustomerPage(),
+        ),
+      );
 
-      context.pushNamed("call-customer");
+      // context.pushNamed("call-customer");
     }
   }
 
